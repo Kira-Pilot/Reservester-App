@@ -10,3 +10,9 @@
 <strong>Address:</strong>
 <%= @restaurant.address %>
 </p>
+<p>
+<strong>Phone:</strong>
+<%= @restaurant.phone %>
+</p>
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
+<%= link_to 'Delete', restaurant_path(@restaurant), method: :delete %>
