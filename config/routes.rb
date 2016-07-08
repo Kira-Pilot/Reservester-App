@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  # get 'restaurant/index'
+
+  # get 'restaurant/new'
+
+  # get 'restaurant/create'
+
+  # get 'restaurant/show'
+
+  resources :restaurants
+
   devise_for :owners
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
