@@ -1,4 +1,4 @@
-class DeviseCreateOwners < ActiveRecord::Migration
+ class DeviseCreateOwners < ActiveRecord::Migration
   def change
     create_table :owners do |t|
       ## Database authenticatable
