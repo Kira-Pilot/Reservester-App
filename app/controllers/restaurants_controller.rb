@@ -31,7 +31,7 @@ def edit
 end
 
 def update
-	@restaurant=current_owner.restaurants.find(params[id])
+	@restaurant=current_owner.restaurants.find(params[:id])
 	if @restaurant.update(restaurant_params)
 		flash[:success] = "Restaurant was successfully updated."
 		redirect_to restaurant_path(@restaurant)

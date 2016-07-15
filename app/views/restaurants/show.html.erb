@@ -16,3 +16,17 @@
 </p>
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
 <%= link_to 'Delete', restaurant_path(@restaurant), method: :delete %>
+<%= link_to 'Back', restaurants_path %>
+<p>
+<strong>Owner:</strong>
+<%= @restaurant.owner.email %>
+</p>
+<br>
+
+<iframe
+
+src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5nt-kaFLNPJ4eifWEBOKyplZFE35MZ6E
+
+&q=<%= @restaurant.address %>">
+
+</iframe>
