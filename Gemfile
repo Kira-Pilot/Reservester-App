@@ -24,6 +24,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+#postmark
+gem 'postmark-rails', '>= 0.10.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -37,6 +39,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  #Heroku doesn't support SQLite
+  gem 'sqlite3', '1.3.11'
 end
 
 group :development do
@@ -47,3 +51,6 @@ group :development do
   gem 'spring'
 end
 
+#gem for Heroku? Not sure if this is needed
+group :production do
+end

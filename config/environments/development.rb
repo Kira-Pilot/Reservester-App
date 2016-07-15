@@ -1,3 +1,6 @@
+#because this is practice, I'm not concerned about committing this:
+ENV['POSTMARK_API_TOKEN'] = 'a8182d28-f5b0-44fb-bdb9-25eec705d7af'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

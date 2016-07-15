@@ -16,7 +16,7 @@ def create
 	@restaurant = current_owner.restaurants.new(restaurant_params)
 	if @restaurant.save
 		flash[:success] = "Restaurant was successfully created."
-	  redirect_to restaurant_path(@restaurant)
+	  	redirect_to restaurant_path(@restaurant)
 	else
 	render 'new'
 	end
