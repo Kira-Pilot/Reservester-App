@@ -6,58 +6,49 @@ def index
 	@reservation = Reservation.all
 end
 
-# def new
-# 	@reservation = Reservation.new
-# 	@restaurant = Restaurant.find(params[:id])
-# end
-#what the hell does the below mean?
-before_action :get_restaurant
-
 def new
     @reservation = @restaurant.reservations.new
-    #@restaurant = Restaurant.find(@reservation.restaurant_id)
+    
 end
 
 def create
+	#What is this, here? And why doesn't it follow the same @restaurant.reservations format, above?
 	@reservation = Reservation.new(reservation_params)
-	#@restaurant = Restaurant.find_by_id(@reservation.restaurant_id)
 	if @reservation.save
-		#ReservationMailer.confirm_email(@restaurant.user).deliver
-		#flash[:success] = "#{@reservation.id} created"
-		redirect_to restaurant_reservation_path(restaurant_id: @restaurant.id, id: @reservation.id)
+		#We'll want to add a line here: ReservationMailer.confirm_email(@restaurant.user).deliver
+		flash[:success] = "Congrats! Reservation number #{@reservation.id} created!"
+		#In Ruby, what does the below mean? And what's the difference between that and render?
+		redirect_to restaurant_reservation_path(restaurant_id: @reservation.restaurant.id, id: @reservation.id)
 	else
-		#flash[:warning] = @reservation.errors.inspect
-		#redirect_to new_reservation_path
 		render 'new'
 	end
 end
 
 def show
-	@reservation = Reservation.find(params[:id])
-	@restaurant = Restaurant.find(@reservation.restaurant_id)
-	#if @reservation
-		#render :show
-	# else
-	# 	flash[:warning] = "Sorry! That reservation doesn't exist."
-	# 	redirect_to root_path
-	#end
+	@reservation = @restaurant.reservations.find(params[:id])
+	if @reservation
+      render :show
+    else
+      flash[:warning] = "Sorry! That reservation doesn't exist."
+      redirect_to new_restaurant_reservation_path
+    end
 end
 
 def edit
-	@reservation = Reservation.find(params[:id])
+	@reservation = @restaurant.reservations.find(params[:id])
 end
 
 def update
-	@reservation = Reservation.find(params[:id])
-	if @reservation.update(reservation_params)
-		redirect_to [@reservation, @reservation]
+	@reservation = @restaurant.reservations.find(params[:id])
+	if @restaurant.reservations.update(reservation_params)
+		redirect_to restaurant_reservation_path
 	else
 		render 'edit'
 	end
 end
 
 def destroy
-	@reservation = Reservation.find(params[:id])
+	@reservation = @restaurant.reservations.find(params[:id])
 	@reservation.destroy
 	redirect_to restaurants_path
 end
@@ -65,7 +56,7 @@ end
 	private
 
 def reservation_params
-	params.require(:reservation).permit(:name, :restaurant_id, :reserve_time, :reserve_date)
+	params.require(:reservation).permit(:email, :restaurant_id, :reserve_time, :reserve_date, :message)
 end
 
 def get_restaurant

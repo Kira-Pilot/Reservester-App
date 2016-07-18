@@ -1,1 +1,21 @@
-<%= render 'form' %>
+<h1>Reservation Director</h1>
+<b><%= "Here are the reservations for #{@restaurant.name}:"%></b>
+<br>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Reserve Date</th>
+    <th>Reserve Time</th>
+    <th>Message</th>
+  </tr>
+
+<% @restaurant.reservations.each do |reservation| %>
+  <tr>
+    <td><%= reservation.email %></td>
+    <td><%= reservation.message %></td>
+    <td><%= reservation.reserve_date %></td>
+    <td><%= reservation.reserve_time %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,15 +1,13 @@
 <h1>Reservations</h1>
-
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
     <br><br>
 
-     <h2>Email:</h2> <%= @reservation.email %> <br>
-     <h2>Message:</h2> <%= @reservation.message %><br>
-     <h2>Reserve Time</h2> <%= @reservation.reserve_time %><br>
-     <h2>Reserve Date</h2> <%= @reservation.reserve_date %>
-
-     <h2><%= link_to 'Home', root_path %>
-     </h2>
+     <th><b>Email:</b></th> <%= @reservation.email %> <br>
+     <th><b>Message:</b></th> <%= @reservation.message %><br>
+     <th><b>Time:</b></th> <%= @reservation.reserve_time %><br>
+     <th><b>Date:</b></th> <%= @reservation.reserve_date %>
+	<br><br>
+     <th><%= link_to 'Home', root_path %></th>
    </div>
  </div>
+ <br>
+<%= flash[:success] %>
