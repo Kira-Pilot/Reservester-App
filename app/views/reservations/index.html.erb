@@ -1,7 +1,7 @@
 <h1>Reservation Director</h1>
 <b><%= "Here are the reservations for #{@restaurant.name}:"%></b>
 <br>
-
+<br>
 <table>
   <tr>
     <th>Email</th>
@@ -13,9 +13,11 @@
 <% @restaurant.reservations.each do |reservation| %>
   <tr>
     <td><%= reservation.email %></td>
-    <td><%= reservation.message %></td>
     <td><%= reservation.reserve_date %></td>
     <td><%= reservation.reserve_time %></td>
+    <td><%= reservation.message %></td>
   </tr>
 <% end %>
 </table>
+
+<%= link_to "Home", restaurants_path%>

@@ -8,7 +8,6 @@ end
 
 def new
     @reservation = @restaurant.reservations.new
-    
 end
 
 def create
@@ -18,6 +17,7 @@ def create
 		#We'll want to add a line here: ReservationMailer.confirm_email(@restaurant.user).deliver
 		flash[:success] = "Congrats! Reservation number #{@reservation.id} created!"
 		#In Ruby, what does the below mean? And what's the difference between that and render?
+		#We have a hash down below because the we're passing parameters instead of just specifying a path
 		redirect_to restaurant_reservation_path(restaurant_id: @reservation.restaurant.id, id: @reservation.id)
 	else
 		render 'new'
@@ -49,9 +49,29 @@ end
 
 def destroy
 	@reservation = @restaurant.reservations.find(params[:id])
-	@reservation.destroy
-	redirect_to restaurants_path
+		if @reservation.destroy
+			flash[:danger] = "Reservation was successfully deleted."
+			redirect_to restaurants_path
+		else 
+			flash[:danger] = "Reservation was not deleted! Give us a call, and we'll do this the old-fashioned way."
+			redirect_to restaurant_path(restaurant_id: @reservation.restaurant.id)
 end
+
+
+
+# def destroy
+# 	@restaurant=current_owner.restaurants.find(params[:id])
+# 	if @restaurant.destroy
+# 		flash[:danger] = "Restaurant was successfully deleted."
+# 		redirect_to restaurants_path
+# 	else
+# 		flash[:danger] = "Restaurant was not deleted!"
+# 		redirect_to restaurants_path
+# 	end
+# end
+
+
+
 
 	private
 
