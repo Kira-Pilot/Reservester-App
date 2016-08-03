@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 
-before_action :authenticate_owner!, except: [:show,:index]
+before_action :authenticate_user!, except: [:show,:index]
 
 #before_action :set_restaurant, only: [:show]
 
@@ -9,11 +9,11 @@ def index
 end
 
 def new
-	@restaurant = current_owner.restaurants.new
+	@restaurant = current_user.restaurants.new
 end
 
 def create
-	@restaurant = current_owner.restaurants.new(restaurant_params)
+	@restaurant = current_user.restaurants.new(restaurant_params)
 	if @restaurant.save
 		flash[:success] = "Restaurant was successfully created."
 	  	redirect_to restaurant_path(@restaurant)
@@ -27,11 +27,11 @@ def show
 end
 
 def edit
-	@restaurant = current_owner.restaurants.find(params[:id])	
+	@restaurant = current_user.restaurants.find(params[:id])	
 end
 
 def update
-	@restaurant=current_owner.restaurants.find(params[:id])
+	@restaurant=current_user.restaurants.find(params[:id])
 	if @restaurant.update(restaurant_params)
 		flash[:success] = "Restaurant was successfully updated."
 		redirect_to restaurant_path(@restaurant)
@@ -41,7 +41,7 @@ def update
 end
 
 def destroy
-	@restaurant=current_owner.restaurants.find(params[:id])
+	@restaurant=current_user.restaurants.find(params[:id])
 	if @restaurant.destroy
 		flash[:danger] = "Restaurant was successfully deleted."
 		redirect_to restaurants_path

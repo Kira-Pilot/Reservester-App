@@ -55,12 +55,13 @@ def destroy
 		else 
 			flash[:danger] = "Reservation was not deleted! Give us a call, and we'll do this the old-fashioned way."
 			redirect_to restaurant_path(restaurant_id: @reservation.restaurant.id)
+		end
 end
 
 
 
 # def destroy
-# 	@restaurant=current_owner.restaurants.find(params[:id])
+# 	@restaurant=current_user.restaurants.find(params[:id])
 # 	if @restaurant.destroy
 # 		flash[:danger] = "Restaurant was successfully deleted."
 # 		redirect_to restaurants_path

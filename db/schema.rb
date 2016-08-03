@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717125122) do
+ActiveRecord::Schema.define(version: 20160725164113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,26 +53,27 @@ ActiveRecord::Schema.define(version: 20160717125122) do
     t.string   "address"
     t.string   "description", limit: 140
     t.string   "phone",       limit: 10
-    t.integer  "owner_id"
+    t.integer  "user_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
-  add_index "restaurants", ["owner_id"], name: "index_restaurants_on_owner_id", using: :btree
+  add_index "restaurants", ["user_id"], name: "index_restaurants_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",        null: false
+    t.string   "encrypted_password",     default: "",        null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,         null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "role",                   default: "regular"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -80,5 +81,5 @@ ActiveRecord::Schema.define(version: 20160717125122) do
 
   add_foreign_key "reservations", "restaurants"
   add_foreign_key "reservations", "users"
-  add_foreign_key "restaurants", "owners"
+  add_foreign_key "restaurants", "owners", column: "user_id"
 end

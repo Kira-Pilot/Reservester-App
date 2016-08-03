@@ -14,14 +14,14 @@
 <strong>Phone:</strong>
 <%= @restaurant.phone %>
 </p>
-<% if @restaurant.owner_id == current_owner.id %>
+<% if @restaurant.user_id == current_user.id %>
 	<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
 	<%= link_to 'Delete', restaurant_path(@restaurant), method: :delete %>
 <% end %>
 <%= link_to 'Back', restaurants_path %>
 <p>
-<strong>Owner:</strong>
-<%= @restaurant.owner.email %>
+<strong>User:</strong>
+<%= @restaurant.user.email %>
 </p>
 <br>
 
@@ -37,7 +37,7 @@ src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5nt-kaFLNPJ4eifWEBOKy
 <%= link_to "Create New Reservation", new_restaurant_reservation_path(@restaurant)%>
 <br>
 
-<% if @restaurant.owner_id == current_owner.id %>
+<% if @restaurant.user_id == current_user.id %>
 	<%= link_to "View Reservations for this Restaurant", restaurant_reservations_path(@restaurant)%>
 <% end %>
 <br>
