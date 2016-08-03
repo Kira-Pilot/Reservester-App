@@ -17,7 +17,7 @@ This application is still very much a work in progress, and was put on hold for 
 
 Next steps will include:
 * Adding AJAX requests for 'favoriting' feature
-* Adding email functionality such that a restaurant Owner is emailed when a reservation is made
+* Adding email functionality such that a restaurant owner is emailed when a reservation is made
 * Adding additional authorization logic around the views
 * Writing unit tests
 * Styling the application and improving the UX
